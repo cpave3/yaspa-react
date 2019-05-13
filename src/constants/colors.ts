@@ -6,5 +6,5 @@ export default {
   alazarin: '#E74C3C',
   emerald: '#2ECC71',
   clouds: '#ecf0f1',
-  silver: '#bdc3c7,'
+  silver: '#bdc3c7',
 };
