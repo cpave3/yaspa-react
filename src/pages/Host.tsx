@@ -30,7 +30,7 @@ const Title = styled.h1`
   padding: 0;
 `;
 
-const Join: React.FC = () => {
+const Host: React.FC = () => {
   const [code, setCode] = React.useState('');
   const [password, setPassword] = React.useState('');
 
@@ -44,7 +44,7 @@ const Join: React.FC = () => {
           placeholder="Room Code"
           value={code}
           onChange={setCode}
-          label="Enter your room code"
+          label="Name your new room!"
           darkMode
           fullWidth
         />
@@ -52,17 +52,17 @@ const Join: React.FC = () => {
           placeholder="Password"
           value={password}
           onChange={setPassword}
-          label="Enter the password"
+          label="Set a password (optional)"
           darkMode
           fullWidth
         />
-        <Button text="Connect" color={colors.emerald} fullWidth />
+        <Button text="Host" color={colors.emerald} fullWidth />
       </FormWrapper>
       <Footer>
-        <a href="/">Or host your own</a>
+        <a href="/">Or join an existing session</a>
       </Footer>
     </Main>
   );
 };
 
-export default Join;
+export default Host;

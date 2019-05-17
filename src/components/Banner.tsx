@@ -1,11 +1,9 @@
-import * as React from "react";
-import styled from "styled-components";
-import colors from "../constants/colors";
+import * as React from 'react';
+import styled from 'styled-components';
+import colors from '../constants/colors';
 
 interface IProps {
-  text: string;
-  fullSize: boolean;
-  color?: string;
+  fullSize?: boolean;
   topic: string;
   header: string;
   onClick?: () => void;
@@ -13,6 +11,7 @@ interface IProps {
 
 const Banner = (props: IProps) => {
   const BannerElement = styled.div`
+    font-family: 'Montserrat', sans-serif;
     border-radius: ${props.fullSize ? 0 : '20px'};
     display: flex;
     flex-direction: column;
@@ -21,7 +20,7 @@ const Banner = (props: IProps) => {
     padding: 15px;
     background-color: red;
     min-height: 150px;
-    height: ${props.fullSize ? '100%' : '150px'};
+    height: ${props.fullSize ? '30%' : '150px'};
 
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2980b9+0,b159d5+100 */
     background: rgb(41, 128, 185); /* Old browsers */
