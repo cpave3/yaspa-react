@@ -23,7 +23,7 @@ const ButtonElement = styled.button`
   `;
 
 const Button = (props: IProps) => {
-  return <ButtonElement onClick={props.onClick}>{props.text}</ButtonElement>;
+  return <ButtonElement onClick={props.onClick} style={{ background: props.color }} >{props.text}</ButtonElement>;
 };
 
 export default Button;

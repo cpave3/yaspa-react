@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Banner from '../components/Banner';
 import UserItem from '../components/UserItem';
-import { IUser } from '../constants/interfaces';
+import { User } from '../constants/interfaces';
 
 const Wrapper = styled.section`
   display: flex;
@@ -22,7 +22,7 @@ const UserList = styled.ul`
 `;
 
 interface IProps {
-  users: IUser[];
+  users: User[];
 }
 
 const HostTopic = (props: IProps) => {

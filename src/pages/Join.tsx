@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+
+import { Link } from 'react-router-dom';
+
 import colors from '../constants/colors';
 import InputField from '../components/InputField';
 import Button from '../components/Button';
@@ -59,7 +62,9 @@ const Join: React.FC = () => {
         <Button text="Connect" color={colors.emerald} fullWidth />
       </FormWrapper>
       <Footer>
-        <a href="/">Or host your own</a>
+        <Link to="host">
+          <Button text="Or Host your own" color={colors.peterRiver} />
+        </Link>
       </Footer>
     </Main>
   );

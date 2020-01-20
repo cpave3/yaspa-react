@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import colors from '../constants/colors';
-import { IResult } from '../constants/interfaces';
+import { Result } from '../constants/interfaces';
 
 interface IProps {
   fullSize?: boolean;
-  results: IResult[];
+  results: Result[];
 }
 
 const Banner = (props: IProps) => {

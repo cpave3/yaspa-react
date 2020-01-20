@@ -5,6 +5,7 @@ import InputField from '../components/InputField';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const Main = styled.main`
   font-family: 'Montserrat', sans-serif;
@@ -59,7 +60,9 @@ const Host: React.FC = () => {
         <Button text="Host" color={colors.emerald} fullWidth />
       </FormWrapper>
       <Footer>
-        <a href="/">Or join an existing session</a>
+        <Link to="/join">
+          <Button text="Join an existing session" color={colors.peterRiver} />
+        </Link>
       </Footer>
     </Main>
   );
