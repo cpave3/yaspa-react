@@ -2,23 +2,33 @@ import * as React from "react";
 import styled from "styled-components";
 import colors from "../constants/colors";
 
-interface IProps {
-  children: React.ReactNode;
+interface Props {
+  title: string;
+  subtitle: string;
 }
 
-const HeaderElement = styled.header`
-  color: ${colors.clouds};
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 25px;
-  box-sizing: border-box;
+const Title = styled.h1`
+  color: ${colors.midnightBlue};
+  margin: 0;
+  font-size: 3.1rem;
+  letter-spacing: 5px;
+  padding: 0;
+  font-weight: 400;
 `;
 
-const Header = (props: IProps) => {
-  return <HeaderElement>{props.children}</HeaderElement>;
+const Subtitle = styled.sub`
+  font-size: 1.1rem;
+  color: ${colors.silver};
+  padding-left: 5px;
+`;
+
+const Header = ({ title, subtitle}: Props) => {
+  return (
+    <>
+      <Title>{title}</Title>
+      <Subtitle>{subtitle}</Subtitle>
+    </>
+  );
 };
 
 export default Header;

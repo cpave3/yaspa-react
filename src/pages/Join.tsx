@@ -7,47 +7,37 @@ import colors from '../constants/colors';
 import InputField from '../components/InputField';
 import Button from '../components/Button';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Main from '../components/MainWrapper';
 
-const Main = styled.main`
-  font-family: 'Montserrat', sans-serif;
-  background-color: ${colors.belizeHole};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100vh;
-`;
+
 
 const FormWrapper = styled.form`
   width: 250px;
   > * {
-    margin: 15px 0;
+    margin: 15px 0 0 0;
   }
-`;
-
-const Title = styled.h1`
-  font-family: cursive;
-  color: ${colors.peterRiver};
-  margin: 0;
-  padding: 0;
 `;
 
 const Join: React.FC = () => {
   const [code, setCode] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [name, setName] = React.useState('');
 
   return (
     <Main>
-      <Header>
-        <Title>Yaspa</Title>
-      </Header>
       <FormWrapper>
+        <Header title="Join." subtitle="An existing session." />
+        <InputField
+          placeholder="Your Name"
+          value={name}
+          onChange={setName}
+          darkMode
+          fullWidth
+        />
         <InputField
           placeholder="Room Code"
           value={code}
           onChange={setCode}
-          label="Enter your room code"
           darkMode
           fullWidth
         />
@@ -55,17 +45,12 @@ const Join: React.FC = () => {
           placeholder="Password"
           value={password}
           onChange={setPassword}
-          label="Enter the password"
           darkMode
           fullWidth
         />
         <Button text="Connect" color={colors.emerald} fullWidth />
+        <Link to="/host">or host your own</Link>
       </FormWrapper>
-      <Footer>
-        <Link to="host">
-          <Button text="Or Host your own" color={colors.peterRiver} />
-        </Link>
-      </Footer>
     </Main>
   );
 };

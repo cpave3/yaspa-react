@@ -1,29 +1,32 @@
-import * as React from "react";
-import styled from "styled-components";
-import colors from "../constants/colors";
+import * as React from 'react';
+import styled from 'styled-components';
+import colors from '../constants/colors';
 
-interface IProps {
+interface Props {
   text: string;
   fullWidth?: boolean;
   color?: string;
+  type?: 'button' | 'reset' | 'submit';
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const ButtonElement = styled.button`
-    border-radius: 5px;
-    border-color: transparent;
-    padding: 10px;
-    font-size: 1.1rem;
-    background-color: ${colors.emerald};
-    color: ${colors.clouds};
-    min-width: 100%;
-    -webkit-box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.75);
-  `;
+  border-color: transparent;
+  padding: 10px;
+  font-size: 1.1rem;
+  background-color: ${colors.emerald};
+  color: ${colors.clouds};
+  min-width: 100%;
+`;
 
-const Button = (props: IProps) => {
-  return <ButtonElement onClick={props.onClick} style={{ background: props.color }} >{props.text}</ButtonElement>;
+const Button = ({ disabled, onClick, text, color, type }: Props) => {
+  const background = disabled ? colors.silver : color || colors.emerald;
+  return (
+    <ButtonElement disabled={disabled} onClick={onClick} style={{ background }} type={type || 'button'}>
+      {text}
+    </ButtonElement>
+  );
 };
 
 export default Button;

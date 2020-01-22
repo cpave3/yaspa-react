@@ -17,9 +17,7 @@ const FormWrapper = styled.form`
   }
 `;
 
-const Host: React.FC = () => {
-  const [code, setCode] = React.useState('');
-  const [password, setPassword] = React.useState('');
+const Welcome: React.FC = () => {
   const [name, setName] = React.useState('');
 
   const handleSubmit = React.useCallback((event: React.FormEvent) => {
@@ -27,55 +25,31 @@ const Host: React.FC = () => {
     firebase
       .auth()
       .signInAnonymously()
-      .then(async (value) => {
+      .then(async (_value) => {
         const user = firebase.auth().currentUser;
         if (user !== null) {
           await user.updateProfile({ displayName: name });
         }
         return user;
       })
-      .then((user) => {
-        const session = {
-          password,
-          ownerUid: user?.uid,
-        };
-        database.ref(`sessions/${code}`).set(session, () => console.log('set done'));
-      })
-      .then(() => (window.location.href = '/who')) 
+      .then(() => (window.location.href = '/')) 
       .catch(error => console.error(error.message));
-  }, [name, code, password]);
+  }, [name]);
 
   return (
     <Main>
       <FormWrapper onSubmit={handleSubmit}>
-        <Header title="Host." subtitle="Your own session." />
+        <Header title="Welcome." subtitle="Let's get started." />
         <InputField
-          placeholder="Your Name"
+          placeholder="What is your name?"
           value={name}
           onChange={setName}
           fullWidth
         />
-        <InputField
-          placeholder="Room Code"
-          value={code}
-          onChange={setCode}
-          fullWidth
-        />
-        <InputField
-          placeholder="Password"
-          value={password}
-          onChange={setPassword}
-          fullWidth
-        />
-        <Button text="Host" color={colors.emerald} fullWidth type="submit" />
+        <Button disabled={!name} text="Looks Good" color={colors.emerald} fullWidth type="submit" />
       </FormWrapper>
-      <Footer>
-        <Link to="/join">
-          <Button text="Join an existing session" color={colors.peterRiver} />
-        </Link>
-      </Footer>
     </Main>
   );
 };
 
-export default Host;
+export default Welcome;
