@@ -1,18 +1,20 @@
-import React from 'react';
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
-} from 'react-router-dom';
+  Redirect
+} from "react-router-dom";
 
-import firebase, { auth, provider } from './firebase';
-import Join from './pages/Join';
-import Host from './pages/Host';
-import Welcome from './pages/Welcome';
-import GetStarted from './pages/GetStarted';
+import firebase, { auth, provider } from "./firebase";
+import Join from "./pages/Join";
+import Host from "./pages/Host";
+import Welcome from "./pages/Welcome";
+import GetStarted from "./pages/GetStarted";
 
-import UserContext from './context/UserContext';
+import StatusBar from "./components/StatusBar";
+
+import UserContext from "./context/UserContext";
 
 interface Props {
   location: string;
@@ -32,34 +34,29 @@ const App: React.FC = () => {
     });
   }, []);
 
-  const logOutUser = React.useCallback(() => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => (window.location.href = '/'));
-  }, []);
+  const redirectTo = user ? "/getStarted" : "/welcome";
 
-  const WhoAmI = () => {
-    return (<UserContext.Consumer>
-      {value => <div>{value?.displayName}</div>}
-    </UserContext.Consumer>);
-  }
+  const guestRoutes = (
+    <>
+      <Redirect exact path="/" to={redirectTo} />
+      <Route path="/welcome" component={Welcome} />
+    </>
+  );
 
-  const redirectTo = user ? '/getStarted' : '/welcome';
+  const authRoutes = (
+    <>
+      <Route path="/getStarted" component={GetStarted} />
+      <Redirect to="/getStarted" />
+    </>
+  );
 
   return (
     <UserContext.Provider value={user}>
       <Router>
         <Switch>
-          <Redirect exact path="/" to={redirectTo} />
-          <Route path="/welcome" component={Welcome} />
-          <Route path="/getStarted" component={GetStarted} />
-          {/* <Route path="/join" component={Join} /> */}
-          {/* <Route path="/host" component={Host} /> */}
-          {/* <Route path="/who" component={WhoAmI} /> */}
+          {user ? authRoutes : guestRoutes}
           <Route component={NoMatch} />
         </Switch>
-        <button onClick={logOutUser}>Log Out</button>
       </Router>
     </UserContext.Provider>
   );
